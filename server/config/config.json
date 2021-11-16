@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "",
+    "password": "123456",
     "database": "tutorialdb",
     "host": "localhost",
     "dialect": "mysql"
