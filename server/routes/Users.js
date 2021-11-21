@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
     edad,
     DNI,
     tipoRol,
-    AreaTrabajoId
+    AreaTrabajoId,
   } = req.body;
   console.log(req.body);
   bcrypt.hash(password, 10).then((hash) => {
@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
         edad,
         DNI,
         tipoRol,
-        AreaTrabajoId
+        AreaTrabajoId,
       });
     } catch (err) {
       res.status(400).send("Datos erroneos");
@@ -75,6 +75,36 @@ router.get("/all", async (req, res) => {
   );
   //console.log(searchUser);
   res.json(searchUser);
+});
+
+//baja usuario
+
+router.delete("/delete", async (req, res) => {
+  const idUser = req.body.id;
+
+  await Users.destroy({
+    where: {
+      id: idUser,
+    },
+  });
+
+  res.json("DELETED SUCCESSFULLY");
+});
+
+//modificacion usuario
+
+router.put("/update", async (req, res) => {
+  const usuario = req.body;
+  Users.update(
+    { ...usuario },
+    {
+      where: {
+        id: usuario.id,
+      },
+    }
+  );
+
+  res.json("Actualizado con exito");
 });
 
 router.get("/auth", validateToken, (req, res) => {

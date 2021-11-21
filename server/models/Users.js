@@ -1,6 +1,8 @@
+const { Sequelize } = require(".");
 const Roles = require("./Roles");
 
 module.exports = (sequelize, DataTypes) => {
+  
   const Users = sequelize.define("Users", {
     nombre: {
       type: DataTypes.STRING,
@@ -29,7 +31,15 @@ module.exports = (sequelize, DataTypes) => {
     tipoRol: {
       type: DataTypes.ENUM("administrador", "jefe", "empleado"),
     },
+    
+    /*createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE(6)
+    }*/
+    
   });
+
+  
 
   Users.associate = (models) => {
     Users.hasMany(models.Tareas, {
