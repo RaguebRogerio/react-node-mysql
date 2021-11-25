@@ -77,6 +77,27 @@ router.get("/all", async (req, res) => {
   res.json(searchUser);
 });
 
+//traer  por dni
+
+router.get("/dni/:dniUser", async (req, res) => {
+
+  const dniUser = req.params.dniUser;
+  const userByDni = await Users.findOne( { where: { DNI: dniUser}} );
+  res.json(userByDni);
+});
+
+
+//traer empleado por apellido
+
+router.get("/apellido/:apellidoUser", async (req, res) => {
+  const apellidoUser = req.params.apellidoUser;
+ 
+  const userBySurname = await Users.findAll( { where: { apellido: "Empleadssasso apellido5"}} );
+
+  res.json(userBySurname);
+});
+
+
 //baja usuario
 
 router.delete("/delete", async (req, res) => {
